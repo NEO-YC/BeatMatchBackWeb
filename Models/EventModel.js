@@ -2,20 +2,6 @@ const mongoose = require('mongoose');
 
 // מודל לאירועים - לוח מודעות לחיפוש מוזיקאים
 const eventSchema = new mongoose.Schema({
-  // פרטי המפרסם (deprecated - משתמשים בפרטי ה-createdBy)
-  contactName: { 
-    type: String, 
-    trim: true 
-  },
-  contactPhone: { 
-    type: String, 
-    trim: true 
-  },
-  contactEmail: { 
-    type: String, 
-    trim: true 
-  },
-
   // פרטי האירוע
   eventType: { 
     type: String, 
