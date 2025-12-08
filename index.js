@@ -4,7 +4,11 @@ const mongoose=require('mongoose');
 const cors = require('cors');
 const app=express();
 app.use(express.json());
-app.use(cors());
+
+app.use(cors({
+  origin: 'https://beatmatchfrontweb.onrender.com', // כתובת הפרונט שלך בלייב
+  credentials: true // אם יש cookies/session
+}));
 
 
 const uri = process.env.MONGODB_URI;
