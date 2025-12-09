@@ -12,9 +12,6 @@ const createEvent = async (req, res) => {
     }
 
     const { 
-      contactName, 
-      contactPhone, 
-      contactEmail, 
       eventType, 
       eventDate, 
       location, 
@@ -24,7 +21,7 @@ const createEvent = async (req, res) => {
     } = req.body;
 
     // וולידציה בסיסית
-    if (!contactName || !contactPhone || !eventType || !eventDate || !location || !description) {
+    if (!eventType || !eventDate || !location || !description) {
       return res.status(400).json({ 
         message: 'חסרים שדות חובה' 
       });
@@ -32,9 +29,6 @@ const createEvent = async (req, res) => {
 
     // יצירת האירוע עם קישור למשתמש היוצר
     const newEvent = new Event({
-      contactName,
-      contactPhone,
-      contactEmail,
       eventType,
       eventDate,
       location,
