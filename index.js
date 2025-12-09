@@ -6,8 +6,12 @@ const app=express();
 app.use(express.json());
 
 app.use(cors({
-  origin: 'https://beatmatchfrontweb.onrender.com', // כתובת הפרונט שלך בלייב
-  credentials: true // אם יש cookies/session
+  origin: [
+    'https://beatmatchfrontweb.onrender.com',  // Production
+    'http://localhost:5173',                    // Local development
+    'http://127.0.0.1:5173'                     // Alternative localhost
+  ],
+  credentials: true
 }));
 
 
