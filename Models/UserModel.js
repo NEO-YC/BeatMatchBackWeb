@@ -29,14 +29,14 @@ const userSchema = new mongoose.Schema({
 
       availability: {
         type: [{
-          userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: false },
-          from:   { type: String, trim: true },
-          to:     { type: String, trim: true },
-          day:    { type: String, trim: true }
+          from:      { type: String, trim: true },  // YYYY-MM-DD
+          to:        { type: String, trim: true },  // YYYY-MM-DD
+          startTime: { type: String, trim: true },  // HH:mm
+          endTime:   { type: String, trim: true },  // HH:mm
+          type:      { type: String, enum: ['available', 'unavailable'], default: 'available' }
         }],
         default: []
-      }
-      ,
+      },
       // האם הפרופיל מוזיקאי פעיל (שניתן לראות בחיפוש) - פעיל לאחר תשלום
       isActive: { type: Boolean, default: false }
     }],

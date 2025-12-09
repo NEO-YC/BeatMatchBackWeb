@@ -26,6 +26,9 @@ mongoose.connect(uri, clientOptions)
 let UserRouter = require('./Routers/UserRouter');
 app.use('/user', UserRouter);
 
+// ניתוב לזמינויות
+let AvailabilityRouter = require('./Routers/AvailabilityRouter');
+app.use('/availability', AvailabilityRouter);
 
 // ניתוב לאירועים
 let EventRouter = require('./Routers/EventRouter');
