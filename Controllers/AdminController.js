@@ -88,8 +88,7 @@ exports.toggleSubscription = async (req, res) => {
                 isActive: true,
                 instrument: '',
                 musictype: '',
-                experienceYears: '',
-                availability: []
+                experienceYears: ''
             }];
         } else {
             // Toggle isActive

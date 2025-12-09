@@ -26,17 +26,6 @@ const userSchema = new mongoose.Schema({
       youtubeLinks:     [{ type: String, trim: true }],
       // האם המשתמש הוא זמר (vocalist) - שימוש ל-filter ותצוגה
       isSinger:          { type: Boolean, default: false },
-
-      availability: {
-        type: [{
-          from:      { type: String, trim: true },  // YYYY-MM-DD
-          to:        { type: String, trim: true },  // YYYY-MM-DD
-          startTime: { type: String, trim: true },  // HH:mm
-          endTime:   { type: String, trim: true },  // HH:mm
-          type:      { type: String, enum: ['available', 'unavailable'], default: 'available' }
-        }],
-        default: []
-      },
       // האם הפרופיל מוזיקאי פעיל (שניתן לראות בחיפוש) - פעיל לאחר תשלום
       isActive: { type: Boolean, default: false }
     }],
