@@ -1,4 +1,9 @@
 {
+  "name": "beatmatch-backend",
+  "version": "1.0.0",
+  "description": "BeatMatch API Server - Platform for connecting musicians and event organizers",
+  "main": "index.js",
+  "type": "commonjs",
   "scripts": {
     "start": "node index.js",
     "dev": "node index.js"
