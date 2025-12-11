@@ -32,6 +32,11 @@ let EventRouter = require('./Routers/EventRouter');
 app.use('/event', EventRouter);
 
 
+// ניתוב לביקורות
+let ReviewRouter = require('./Routers/ReviewRouter');
+app.use('/review', ReviewRouter);
+
+
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {

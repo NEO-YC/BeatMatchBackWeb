@@ -75,3 +75,6 @@ exports.requireAdmin = (req, res, next) => {
     
     next();
 };
+
+// Alias for verifyToken (used in ReviewRouter)
+exports.verifyToken = exports.authenticateToken;
