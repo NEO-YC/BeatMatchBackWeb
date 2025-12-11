@@ -235,7 +235,6 @@ exports.updateMusicianProfile = async function (req, res) {
                 galleryPictures: galleryPictures || [],
                 galleryVideos: galleryVideos || [],
                 youtubeLinks: youtubeLinks || [],
-                availability: [],
                 isActive: false
             });
         } else {
@@ -521,7 +520,7 @@ exports.uploadToCloudinary = async function (req, res) {
                     if (user) {
                         if (!Array.isArray(user.musicianProfile)) user.musicianProfile = [];
                         if (user.musicianProfile.length === 0) {
-                            user.musicianProfile.push({ profilePicture: '', galleryPictures: [], galleryVideos: [], availability: [] });
+                            user.musicianProfile.push({ profilePicture: '', galleryPictures: [], galleryVideos: [] });
                         }
                         const profile = user.musicianProfile[0];
                         if (saveHint === 'profile') {
@@ -582,7 +581,7 @@ exports.uploadToCloudinary = async function (req, res) {
                 if (user) {
                     if (!Array.isArray(user.musicianProfile)) user.musicianProfile = [];
                     if (user.musicianProfile.length === 0) {
-                        user.musicianProfile.push({ profilePicture: '', galleryPictures: [], galleryVideos: [], availability: [] });
+                        user.musicianProfile.push({ profilePicture: '', galleryPictures: [], galleryVideos: [] });
                     }
                     const profile = user.musicianProfile[0];
                     if (saveHint === 'profile') {
@@ -680,7 +679,7 @@ exports.createPayPalOrder = async function (req, res) {
             const user = await User.findById(userId);
             if (user) {
                 if (!Array.isArray(user.musicianProfile)) user.musicianProfile = [];
-                if (user.musicianProfile.length === 0) user.musicianProfile.push({ profilePicture: '', galleryPictures: [], galleryVideos: [], availability: [], isActive: false });
+                if (user.musicianProfile.length === 0) user.musicianProfile.push({ profilePicture: '', galleryPictures: [], galleryVideos: [], isActive: false });
                 await user.save();
             }
         } catch (err) {
@@ -717,7 +716,7 @@ exports.capturePayPalOrder = async function (req, res) {
             const user = await User.findById(userId);
             if (user) {
                 if (!Array.isArray(user.musicianProfile)) user.musicianProfile = [];
-                if (user.musicianProfile.length === 0) user.musicianProfile.push({ profilePicture: '', galleryPictures: [], galleryVideos: [], availability: [], isActive: false });
+                if (user.musicianProfile.length === 0) user.musicianProfile.push({ profilePicture: '', galleryPictures: [], galleryVideos: [], isActive: false });
                 const profile = user.musicianProfile[0];
                 profile.isActive = true;
                 await user.save();
@@ -774,7 +773,7 @@ exports.handlePayPalWebhook = async function (req, res) {
                     const user = await User.findById(userId);
                     if (user) {
                         if (!Array.isArray(user.musicianProfile)) user.musicianProfile = [];
-                        if (user.musicianProfile.length === 0) user.musicianProfile.push({ profilePicture: '', galleryPictures: [], galleryVideos: [], availability: [], isActive: false });
+                        if (user.musicianProfile.length === 0) user.musicianProfile.push({ profilePicture: '', galleryPictures: [], galleryVideos: [], isActive: false });
                         const profile = user.musicianProfile[0];
                         // mark active if event indicates capture/completion
                         if (eventType.includes('CAPTURE') || eventType.includes('COMPLETED') || eventType.includes('APPROVED')) {
