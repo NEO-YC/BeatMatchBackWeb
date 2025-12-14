@@ -142,7 +142,7 @@ exports.login = async function (req, res) {
             },
             jwtSecret,
             { 
-                expiresIn: '24h' // התוקף של הטוקן - 24 שעות
+                expiresIn: '30d' // התוקף של הטוקן - 24 שעות
             }
 
 
