@@ -18,8 +18,8 @@ app.use(cors({
 const uri = process.env.MONGODB_URI;
 const clientOptions = { serverApi: { version: '1', strict: true, deprecationErrors: true } };
 mongoose.connect(uri, clientOptions)
-.then(() => console.log('mongoDB connected succesfully ✅'))
-.catch(err => console.error('mongoDB faild connection ❌', err));
+.then(() => console.log('mongoDB connected successfully ✅'))
+.catch(err => console.error('mongoDB failed connection ❌', err));
 
 
 

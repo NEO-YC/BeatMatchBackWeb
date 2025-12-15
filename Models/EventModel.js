@@ -18,6 +18,12 @@ const eventSchema = new mongoose.Schema({
     required: true, 
     trim: true 
   },
+
+  instruments: {
+    type: String,
+    required: true,
+    trim: true
+  },
   
   // תקציב - טווח משוער
   budgetMin: { 

@@ -15,13 +15,14 @@ const createEvent = async (req, res) => {
       eventType, 
       eventDate, 
       location, 
+      instruments,
       budgetMin, 
       budgetMax, 
       description 
     } = req.body;
 
     // וולידציה בסיסית
-    if (!eventType || !eventDate || !location || !description) {
+    if (!eventType || !eventDate || !location || !description || !instruments) {
       return res.status(400).json({ 
         message: 'חסרים שדות חובה' 
       });
@@ -32,13 +33,13 @@ const createEvent = async (req, res) => {
       eventType,
       eventDate,
       location,
+      instruments,
       budgetMin,
       budgetMax,
       description,
       status: 'פתוח',
       createdBy: req.user.userId
     });
-
     await newEvent.save();
 
     res.status(201).json({ 
@@ -47,7 +48,6 @@ const createEvent = async (req, res) => {
     });
 
   } catch (error) {
-    console.error('Error creating event:', error);
     res.status(500).json({ 
       message: 'שגיאה ביצירת האירוע',
       error: error.message 
@@ -102,7 +102,6 @@ const getAllEvents = async (req, res) => {
     });
 
   } catch (error) {
-    console.error('Error fetching events:', error);
     res.status(500).json({ 
       message: 'שגיאה בטעינת האירועים',
       error: error.message 
@@ -139,7 +138,6 @@ const getOpenEventsCount = async (req, res) => {
     res.status(200).json({ count });
 
   } catch (error) {
-    console.error('Error counting events:', error);
     res.status(200).json({ count: 0 });
   }
 };
@@ -193,7 +191,6 @@ const closeEvent = async (req, res) => {
     });
 
   } catch (error) {
-    console.error('Error closing event:', error);
     res.status(500).json({ 
       message: 'שגיאה בסגירת האירוע',
       error: error.message 
@@ -236,16 +233,16 @@ const updateEvent = async (req, res) => {
 
     // עדכון השדות המותרים
     const allowedUpdates = [
-      'contactName', 
-      'contactPhone', 
-      'contactEmail', 
       'eventType', 
       'eventDate', 
       'location', 
+      'instruments',
       'budgetMin', 
       'budgetMax', 
       'description'
     ];
+
+    console.log('📝 updateEvent received - instruments:', req.body.instruments);
 
     allowedUpdates.forEach(field => {
       if (req.body[field] !== undefined) {
@@ -253,7 +250,9 @@ const updateEvent = async (req, res) => {
       }
     });
 
+    console.log('💾 updating event - instruments after update:', event.instruments);
     await event.save();
+    console.log('✅ saved to DB - instruments:', event.instruments);
 
     res.status(200).json({ 
       message: 'האירוע עודכן בהצלחה!',
@@ -261,7 +260,6 @@ const updateEvent = async (req, res) => {
     });
 
   } catch (error) {
-    console.error('Error updating event:', error);
     res.status(500).json({ 
       message: 'שגיאה בעדכון האירוע',
       error: error.message 
@@ -310,7 +308,6 @@ const deleteEvent = async (req, res) => {
     });
 
   } catch (error) {
-    console.error('Error deleting event:', error);
     res.status(500).json({ 
       message: 'שגיאה במחיקת האירוע',
       error: error.message 
@@ -338,7 +335,6 @@ const getMyEvents = async (req, res) => {
     });
 
   } catch (error) {
-    console.error('Error fetching my events:', error);
     res.status(500).json({ 
       message: 'שגיאה בטעינת האירועים',
       error: error.message 
